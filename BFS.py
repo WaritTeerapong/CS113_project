@@ -37,4 +37,8 @@ def BFS(start_node,graph):
         queue.pop(0)
     return visited
 
-print(BFS('B',g1))
+# for DFS change queue.append(i) --> queue.insert(0,i)
+
+
+print(BFS('A',g1))
+
