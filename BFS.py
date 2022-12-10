@@ -10,6 +10,17 @@ g1 = {"A" : ["B","C","F"],
       "J" : ["B","I","K"],
       "K" : ["F","J"]}
 
+g2 = {
+    'A': ['B', 'C', 'D'],
+    'B': ['E', 'F', 'D'],
+    'C': ['F', 'G'],
+    'D': ['H'],
+    'E': ['H'],
+    'F': ['H'],
+    'G': ['H'],
+    'H': []
+}
+
 def BFS(start_node,end_node,graph):
     queue = [start_node]
     visited = [start_node]
@@ -17,14 +28,14 @@ def BFS(start_node,end_node,graph):
     while queue:
         now = queue[0]
         if now == end_node:
-            visited.append(now)
+            if now not in visited:
+                visited.append(now)
             return visited
         
         for i in graph[now]:
-            if i in visited:
-                continue
-            queue.append(i)
-            visited.append(i)
+            if i not in visited:
+                queue.append(i)
+                visited.append(i)
         queue.pop(0)
 
-print(BFS("A","K",g1))
+print(BFS("B","K",g1))
