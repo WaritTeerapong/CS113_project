@@ -1,14 +1,16 @@
-g1 = {"A" : ["B","C","F"],
-      "B" : ["A","D","J"],
-      "C" : ["A","F"],
-      "D" : ["B","E","G","H"],
-      "E" : ["D","G"],
-      "F" : ["H","K"],
-      "G" : ["D","E","I","J"],
-      "H" : ["D","F","I"],
-      "I" : ["G","H","J"],
-      "J" : ["B","I","K"],
-      "K" : ["F","J"]}
+g1 = {
+    'A' : ['B','C','F'],
+    'B' : ['A','D','J'],
+    'C' : ['A','F'],
+    'D' : ['B','E','G','H'],
+    'E' : ['D','G'],
+    'F' : ['H','K'],
+    'G' : ['D','E','I','J'],
+    'H' : ['D','F','I'],
+    'I' : ['G','H','J'],
+    'J' : ['B','I','K'],
+    'K' : ['F','J']
+    }
 
 g2 = {
     'A': ['B', 'C', 'D'],
@@ -21,21 +23,18 @@ g2 = {
     'H': []
 }
 
-def BFS(start_node,end_node,graph):
+def BFS(start_node,graph):
     queue = [start_node]
     visited = [start_node]
     
     while queue:
         now = queue[0]
-        if now == end_node:
-            if now not in visited:
-                visited.append(now)
-            return visited
         
         for i in graph[now]:
             if i not in visited:
                 queue.append(i)
                 visited.append(i)
         queue.pop(0)
+    return visited
 
-print(BFS("B","K",g1))
+print(BFS('B',g1))
