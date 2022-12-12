@@ -57,7 +57,7 @@ def kruskal(graph):
                                           
                                           visited[0].append(*visited[small_group]) # append the rest node to the main group
                                           
-                                          visited.remove(visited[i]) # remove smaller group node
+                                          visited.remove(visited[small_group]) # remove smaller group node
                                           break
                             
                                  
@@ -66,6 +66,6 @@ def kruskal(graph):
               weight.pop(0)
        return visited, total_w
 
-path, weight_sum = kruskal(g2)
+path, weight_sum = kruskal(g1)
 print(path)
 print(weight_sum)
