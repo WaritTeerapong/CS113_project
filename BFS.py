@@ -40,9 +40,6 @@ def BFS(start_node,graph):
     return visited
 
 
-# lebel tree level (Later)
-
-
 # Input part
 num_nodes = int(input("Total nodes : "))
 graph = {}
