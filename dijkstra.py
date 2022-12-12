@@ -1,5 +1,6 @@
 
 import math
+
 # g1 = { "S" : {"A":2,"B":5,"C":3},
 #           "A" : {"S":2,"B":2,"D":6},
 #           "B" : {"S":5,"A":2,"C":2,"D":3,"F":6},
@@ -21,31 +22,43 @@ g1 = { "a" : {"b":4,"h":8},
           "i" : {"c":2,"h":7,"g":6}
         }
 
-def dijkstra(start,end):
-    node = {i: [math.inf,""] for i in g1}
-    # print(node)
-    node[start] = [0,""]
-    visited = []
-    path = [end]
-    queue = [start]
-    while queue:
-        for i in g1[queue[0]]:
-            if i not in visited and g1[queue[0]][i] + node[queue[0]][0] < node[i][0]:
-                node[i][0] = g1[queue[0]][i] + node[queue[0]][0]
-                node[i][1] = queue[0]
-                queue.append(i)
-        visited.append(queue[0])
-        queue.pop(0)
+def dijkstra(start,end): # start node, destination node
 
-    track = end
+    node = {i: [math.inf,""] for i in g1} # {node: [weight, from what node]}
+    node[start] = [0,""] # assign the start node [weight = 0, from nothing]
+    visited = [] # to store visited node
+    path = [end] # store path track from end to start
+    queue = [start] # store node to visit next
+
+    while queue: # run while there's still node to visit
+
+        # loop through child node of first queue 
+        for i in g1[queue[0]]: 
+
+            # if child not visited & (weight from parent to child + weight of parent < child weight)
+            if i not in visited and g1[queue[0]][i] + node[queue[0]][0] < node[i][0]: 
+                node[i][0] = g1[queue[0]][i] + node[queue[0]][0] # child weight = weight from parent to child + weight of parent
+                node[i][1] = queue[0] # updated where weight from (parent node)
+                queue.append(i) # append child in queue to visit next
+
+        visited.append(queue[0]) # append parent to visited 
+        queue.pop(0) # remove parent from queue
+
+    #path
+
+    track = end # assign current node to track back from end to start
+
+    #run while start not in path (not reached start) 
     while start not in path:
-        path.append(node[track][1])
-        track = node[track][1]
+        path.append(node[track][1]) # append where track node from to path
+        track = node[track][1] # assign new track value to where track node from
 
-    return node[end][0], path[::-1]
+    return node[end][0], path[::-1] # return destination minimun weight & path
+    
     
 start = 'a'
 end = 'e'
+
 distance, path = dijkstra(start,end)
 print("Distance :",distance)
 print("Path :",end="")

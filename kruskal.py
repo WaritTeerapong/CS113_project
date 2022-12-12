@@ -69,6 +69,28 @@ def kruskal(graph):
               weight.pop(0)
        return visited, total_w
 
+# Input part
+edge = int(input("How many edges : "))
+graph = {}
+
+for i in range(edge):
+       print(graph)
+       node = [ i for i in input("nodes connected : ").split()]
+       weight = int(input("weight : "))
+       
+       if weight not in graph.keys():
+              graph[weight] = [node]
+              continue
+       
+       graph[weight].append(node)
+       
+      
+       
+
+
+
+# Output part
+
 path, weight_sum = kruskal(g1)
 print(path)
 print(weight_sum)

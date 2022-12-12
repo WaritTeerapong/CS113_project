@@ -33,6 +33,7 @@ def BFS(start_node,graph):
         for i in graph[now]:
             if i not in visited.keys():
                 visited[i] = visited[now]+1
+                print(visited)
                 queue.append(i)
                 
         queue.pop(0)
@@ -45,6 +46,7 @@ def BFS(start_node,graph):
 # Input part
 num_nodes = int(input("Total nodes : "))
 graph = {}
+    
 for i in range(num_nodes):
     node = input("node : ")
     connect = [i for i in input("connect to : ").split()]
@@ -54,8 +56,8 @@ for i in range(num_nodes):
 start = input("Start from node : ")
 
 # Output part
-#bfs = BFS('A',g1)
-bfs = BFS(start,graph)
+bfs = BFS('A',g1)
+#bfs = BFS(start,graph)
 max_lvl = max(bfs.values())
 
 for lvl in range(max_lvl+1):
