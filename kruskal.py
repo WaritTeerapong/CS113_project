@@ -84,10 +84,6 @@ for i in range(edge):
        
        graph[weight].append(node)
        
-      
-       
-
-
 
 # Output part
 

@@ -11,6 +11,7 @@ import math
 #           "T" : {"D":6,"E":2,"F":4}
 #         }
 
+
 g1 = { "a" : {"b":4,"h":8},
           "b" : {"a":4,"c":8,"h":11},
           "c" : {"b":8,"i":2,"f":4,"d":7},
@@ -55,9 +56,19 @@ def dijkstra(start,end): # start node, destination node
 
     return node[end][0], path[::-1] # return destination minimun weight & path
     
+ 
+ # Input part
+ 
+num_nodes = int(input("How many nodes : "))
+graph = {}
+for i in range(num_nodes):
+    node = input("Node : ")
+    connect = {i[0]:int(i[1:]) for i in input("Connect : ").split()}
     
-start = 'a'
-end = 'e'
+    graph[node] = connect
+
+start = input("Start node : ")
+end = input("Destination node : ")
 
 distance, path = dijkstra(start,end)
 print("Distance :",distance)
