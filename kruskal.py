@@ -1,6 +1,6 @@
 g1 = {
         2 : [['S','A'],['A','B'],['C','B'],['E','T']],
-        3 : [['S','C'],['B','D'],['D','E'],['F','E']],
+        3 : [['S','C'],['B','D'],['F','E'],['D','E']],
         4 : [['F','T']],
         5 : [['S','B']],
         6 : [['B','F'],['A','D'],['D','T']],
@@ -25,14 +25,15 @@ def kruskal(graph):
               
               for i in graph[current_weight]:
                      
-                     
                      append_check = False
+                     
                      for j in range(len(visited)):
                             
-                            if i[1] in visited[j] and i[0] in visited[j]:
+                            # break loop when both are visited
+                            if i[1] in visited[j] and i[0] in visited[j]: 
                                    append_check = True
                                    break
-                            
+                            # append only one node that haven't visited
                             if i[0] in visited[j] and i[1] not in visited[j]:
                                    visited[j].append(i[1])
                                    total_w += current_weight
@@ -43,11 +44,13 @@ def kruskal(graph):
                                    total_w += current_weight
                                    append_check = True
                                    break
-                     if not append_check :
+                            
+                     # add both nodes that haven't visited yet      
+                     if not append_check : 
                             visited.append(i)
                             total_w += current_weight
                      
-                     # check connect of different node group
+                     # check connection of different node group
                      visited.sort(reverse = True, key = lambda x:len(x)) # main group node (longest) is at visited[0]
                      for small_group in range(1,len(visited)):
                             
@@ -55,12 +58,12 @@ def kruskal(graph):
                                    if node in visited[0]:
                                           visited[small_group].remove(node) #remove replication node
                                           
-                                          visited[0].append(*visited[small_group]) # append the rest node to the main group
+                                          for i in visited[small_group]:
+                                                 visited[0].append(i) # append the rest node to the main group
                                           
                                           visited.remove(visited[small_group]) # remove smaller group node
                                           break
                             
-                                 
                      print(visited)
                      print(total_w)
               weight.pop(0)

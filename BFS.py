@@ -25,23 +25,44 @@ g2 = {
 
 def BFS(start_node,graph):
     queue = [start_node]
-    visited = [start_node]
+    visited = {start_node : 0} # { node : lvl }
     
     while queue:
         now = queue[0]
         
         for i in graph[now]:
-            if i not in visited:
+            if i not in visited.keys():
+                visited[i] = visited[now]+1
                 queue.append(i)
-                visited.append(i)
+                
         queue.pop(0)
     return visited
 
-# for DFS change queue.append(i) --> queue.insert(0,i)
-
-
-print(BFS('A',g1))
 
 # lebel tree level (Later)
-# input graph !!!!!!!!!!!!!
 
+
+# Input part
+num_nodes = int(input("Total nodes : "))
+graph = {}
+for i in range(num_nodes):
+    node = input("node : ")
+    connect = [i for i in input("connect to : ").split()]
+    graph[node] = connect   
+    #print(graph)
+
+start = input("Start from node : ")
+
+# Output part
+#bfs = BFS('A',g1)
+bfs = BFS(start,graph)
+max_lvl = max(bfs.values())
+
+for lvl in range(max_lvl+1):
+    level_node = []
+    
+    for i in bfs:
+        if bfs[i] == lvl:
+            level_node.append(i)
+    
+    print(f"Node level {lvl} = {level_node}")
