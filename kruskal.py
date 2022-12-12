@@ -57,7 +57,7 @@ def kruskal(graph):
                                           
                                           visited[0].append(*visited[small_group]) # append the rest node to the main group
                                           
-                                          visited.remove(visited[i])
+                                          visited.remove(visited[i]) # remove smaller group node
                                           break
                             
                                  
