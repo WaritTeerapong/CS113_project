@@ -1,3 +1,9 @@
+'''
+       65090500409 ฑีฆมล ชัยวงศ์วุฒิกุล
+       65090500424 วริศ   ธีระพงษ์
+       65090500432 ชัยธวัช สะกลาง
+'''
+
 g1 = {
     'A' : ['B','C','F'],
     'B' : ['A','D','J'],
@@ -12,16 +18,16 @@ g1 = {
     'K' : ['F','J']
     }
 
-g2 = {
-    'A': ['B', 'C', 'D'],
-    'B': ['E', 'F', 'D'],
-    'C': ['F', 'G'],
-    'D': ['H'],
-    'E': ['H'],
-    'F': ['H'],
-    'G': ['H'],
-    'H': []
-}
+# g2 = {
+#     'A': ['B', 'C', 'D'],
+#     'B': ['E', 'F', 'D'],
+#     'C': ['F', 'G'],
+#     'D': ['H'],
+#     'E': ['H'],
+#     'F': ['H'],
+#     'G': ['H'],
+#     'H': []
+# }
 
 def BFS(start_node,graph):
     queue = [start_node]
@@ -29,7 +35,6 @@ def BFS(start_node,graph):
     
     while queue:
         now = queue[0]
-        
         for i in graph[now]:
             if i not in visited.keys():
                 visited[i] = visited[now]+1
@@ -53,8 +58,8 @@ for i in range(num_nodes):
 start = input("Start from node : ")
 
 # Output part
-bfs = BFS('A',g1)
-#bfs = BFS(start,graph)
+#bfs = BFS('A',g1)
+bfs = BFS(start,graph)
 max_lvl = max(bfs.values())
 
 for lvl in range(max_lvl+1):
